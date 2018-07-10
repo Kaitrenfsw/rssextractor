@@ -2,15 +2,22 @@ from datetime import datetime
 from threading import Timer
 import feedparser
 import pika
+import re
+import json
 
 
-consulted_pages = ["https://www.reddit.com/r/python/.rss?limit=100"]
+consulted_pages = ["https://www.reddit.com/r/python/.rss?limit=20"]
 
 x=datetime.today()
 y=x.replace(day=x.day, hour=x.hour, minute=x.minute+1, second=0, microsecond=0)
 delta_t=y-x
 
 secs=delta_t.seconds+1
+
+def cleanhtml(raw_html):
+  cleanr = re.compile('<.*?>')
+  cleantext = re.sub(cleanr, '', raw_html)
+  return cleantext
 
 def daily_refreshment():
 	for consulted_page in consulted_pages:
@@ -40,23 +47,44 @@ channel.queue_declare(queue='hello')
 for consulted_page in consulted_pages:
 
 	d = feedparser.parse(consulted_page)
-	print(len(d['entries']))
 	message = d.entries[0].title
-	print(message)
+	response = {}
+	response["date"] = datetime.today().strftime("%Y-%m-%d")
+	response["documents"] = []
+	documents = []
+	doc_count = 0
+	for post in d.entries:
+		post_response = feedparser.parse(post.url + '/.rss')
+		message = ''
+		
+		post_corpus = {}
+		for post_content in post_response.entries:
+
+			print(cleanhtml( post_content['content'][0]['value'] ))
+			message = message + cleanhtml(post_content['content'][0]['value'])
+
+
+		post_corpus['text'] = message
+		post_corpus['title'] = post.title
+		post_corpus['url'] = post.url
+		post_corpus['site'] = consulted_page
+		post_corpus['site_name'] = consulted_page
+		post_corpus['published'] = datetime.today().strftime("%Y-%m-%d")
+
+		response["documents"].append(post_corpus)
+
+		doc_count += 1
+
+	response["doc_count"] = doc_count
+	print(response)
+	response = json.dumps(response)
 	channel.basic_publish(exchange='',
 	                      routing_key='hello',
-	                      body=message)
-
-
-	for post in d.entries:
-		print(post.title)
-		print("----------------")
+	                      body=response)
 
 import pika
 
 
 
-print("hello")
 t = Timer(secs, daily_refreshment)
 t.start()
-
