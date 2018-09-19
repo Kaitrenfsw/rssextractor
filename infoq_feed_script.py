@@ -13,8 +13,6 @@ date_format = '%a, %d %b %Y %X %Z'
 d = feedparser.parse(rss_url)
 
 # list of rss entries
-pprint(len(d['entries']))
-pprint(d)
 entries = d['entries']
 
 # check last recorded entry -- create record file text if it does not exist
@@ -25,12 +23,11 @@ documents = {"documents": [ ]}
 
 # get data from non-recorded entries and original links to publications
 for entry in entries:
-	print(entry['title'])
-	print("    Published: "+entry['published'])
-	p_date = datetime.strptime(entry['published'], date_format)
-	print(p_date)
-	print("Link: "+entry['link'])
-	print("Summary: "+entry['summary'])
+
+	# scrap html embeded summary
+
+	summary = entry['summary']
+	summary_soup = BeautifulSoup(summary, 'html.parser')
 
 	# empty dictionary to save entry data
 	
@@ -45,7 +42,10 @@ for entry in entries:
 	document['source_id'] = source_id
 	document['source_name'] = source_name
 	document['published'] = datetime.strptime(entry['published'], date_format)
-	# document['main_image'] = 
+	document['main_image'] = summary_soup.img['src']
+	document['summary'] = summary_soup.p.text
+
+	pprint(document)
 
 	# scrap original link
 	# retrieve & save text from publication
