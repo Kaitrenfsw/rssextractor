@@ -13,7 +13,7 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
 ENV PYTHONUNBUFFERED 1
-CMD ["python", "./main.py"]
+CMD ["python", "./infoq_feed_script.py"]
 
 COPY . .
 

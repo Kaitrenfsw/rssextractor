@@ -3,3 +3,5 @@ feedparser
 pika
 datetime
 Timer
+beautifulsoup4
+request
