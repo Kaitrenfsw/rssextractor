@@ -4,7 +4,7 @@ Python 3.6.1
 
 Each script is associated with a corresponding source.
 
-## Main script:
+## Main script (TO-DO):
 ### Name: main.py
 
 This script execute all other scripts.
@@ -18,23 +18,21 @@ InfoQ does not have historical data.
 
 ## Message format:
 
-All scripts send retrieved publications to RAW_DATA service with the following format:
+All scripts send retrieved publications, one-by-one, to RAW_DATA service with the following format:
 ```
 	{
-		"entries" : [
+		"document" : 
 			{
 				“title”: <STRING>
-    			“url”: <STRING>
-			    “source_id”: <NUMBER>
-			    “source_name”: <CATEGORY>
-			    “published”: <DATE>
-			    “main_image”: <STRING>
-			    “raw_text”: <STRING>
-			    “summary”: <STRING>
+				“url”: <STRING>
+				“source_id”: <NUMBER>
+				“source_name”: <CATEGORY>
+				“published”: <DATE>
+				“main_image”: <STRING>
+				“raw_text”: <STRING>
+				“summary”: <STRING>
 
-			},
-			...
-		]
+			}
 	}
 ```
 
