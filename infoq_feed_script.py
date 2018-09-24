@@ -8,6 +8,21 @@ import json
 import urllib3
 import pika
 
+# connect to RabbitMQ
+
+connected = False
+
+while(not connected):
+	try:
+		connection = pika.BlockingConnection(pika.ConnectionParameters(host='rabbitmq-docker'))
+		connected = True
+	except:
+		pass
+
+channel = connection.channel()
+
+channel.queue_declare(queue='preprocessing_queue')
+
 # base url and data from this source
 source_name = "InfoQ"
 source_id = 1
@@ -94,8 +109,17 @@ for entry in entries:
 
 	# get id of saved document
 
+	json_response = json.loads(r.data)
+	new_doc = json_response['document']
+	new_id = new_doc['id']
+
 	# send id to RabbitMQ
 
+	channel.basic_publish(exchange='', routing_key='preprocessing_queue', body=new_id)
+
+# close connection with RabbitMQ
+
+connection.close()
 
 # wait X time and repeat
 
