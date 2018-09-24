@@ -6,6 +6,7 @@ import request
 import feedparser
 import json
 import urllib3
+import pika
 
 # base url and data from this source
 source_name = "InfoQ"
@@ -91,9 +92,10 @@ for entry in entries:
 	http = urllib3.PoolManager()
 	r = http.request('POST', 'http://raw_data:4000/api/documents', body=json_message, headers={'Content-Type': 'application/json'})
 
-	# add retrieved publication to publication list
+	# get id of saved document
 
-# send publication list to RAW_DATA
+	# send id to RabbitMQ
+
 
 # wait X time and repeat
 
