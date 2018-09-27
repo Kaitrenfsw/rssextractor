@@ -7,6 +7,7 @@ import feedparser
 import json
 import urllib3
 import pika
+import os
 
 # connect to RabbitMQ
 
