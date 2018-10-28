@@ -44,6 +44,7 @@ if os.path.exists(dir_path+file_name):
 else:
 	file_mode = 'w+'
 	first_exec = True
+	last_record = "first_exec"
 	print("Archivo no existe.")
 	print("Mode: "+file_mode)
 
@@ -60,7 +61,7 @@ entries = d['entries']
 
 # check last recorded entry if file already existed
 
-if !first_exec:
+if not first_exec:
 	with open(dir_path+file_name, file_mode) as f:
 		last_record = f.readline()
 		file_mode = 'w+'
@@ -84,9 +85,10 @@ for entry in entries:
 		break
 
 	# save first entry as new last record
-
-	with open(dir_path+file_name, file_mode) as f:
-		f.write(title)
+	if first_loop:
+		with open(dir_path+file_name, file_mode) as f:
+			f.write(title)
+		first_loop = False
 
 	# scrap html embeded summary
 
