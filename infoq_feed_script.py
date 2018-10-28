@@ -52,7 +52,7 @@ else:
 		f.write("First Execution")
 
 # parse feed
-
+	# if first execution add here special behavior, such as getting historical data
 d = feedparser.parse(rss_url)
 
 # list of rss entries
