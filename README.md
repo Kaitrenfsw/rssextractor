@@ -36,3 +36,7 @@ All scripts send retrieved publications, one-by-one, to RAW_DATA service with th
 	}
 ```
 
+## Log files:
+
+Each script has its own LOG file in the feed_logs directory.
+If you are executing these scripts for the first time you have to delete all LOG files from this directory, as they are automaticlly created. Some example log files may be added to this repo, always check and delete this files or you may lost some entries in a first execution.

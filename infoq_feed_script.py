@@ -29,12 +29,42 @@ source_name = "InfoQ"
 source_id = 1
 rss_url= "https://feed.infoq.com/"
 date_format = '%a, %d %b %Y %X %Z'
+first_exec = False
+
+# check if file exist and set 'first_exec' var
+
+dir_path = "feed_logs/"
+file_name = "infoq_feed_log.txt"
+
+if os.path.exists(dir_path+file_name):
+	file_mode = 'r'
+	first_exec = False
+	print("Archivo existe")
+	print("Mode: "+file_mode)
+else:
+	file_mode = 'w+'
+	first_exec = True
+	last_record = "first_exec"
+	print("Archivo no existe.")
+	print("Mode: "+file_mode)
+
+	with open(dir_path+file_name, file_mode) as f:
+		print("Log file created...")
+		f.write("First Execution")
+
+# parse feed
+	# if first execution add here special behavior, such as getting historical data
 d = feedparser.parse(rss_url)
 
 # list of rss entries
 entries = d['entries']
 
-# check last recorded entry -- create record file text if it does not exist
+# check last recorded entry if file already existed
+
+if not first_exec:
+	with open(dir_path+file_name, file_mode) as f:
+		last_record = f.readline()
+		file_mode = 'w+'
 
 # create empty publication list
 
@@ -42,7 +72,23 @@ documents = {"documents": [ ]}
 
 # get data from non-recorded entries and original links to publications
 
+first_loop = True
+
 for entry in entries:
+
+	# stop loop if entry is already recorded
+	
+	title = entry['title']
+	if last_record == title:
+		print("This entry was already obtained.")
+		print("Stopping script.")
+		break
+
+	# save first entry as new last record
+	if first_loop:
+		with open(dir_path+file_name, file_mode) as f:
+			f.write(title)
+		first_loop = False
 
 	# scrap html embeded summary
 
@@ -52,12 +98,9 @@ for entry in entries:
 	# empty dictionary to save entry data
 	
 	document = {}
-	
-	# stop loop if entry is already recorded
 
 	# save base data (title, p_date, url, image, source_id, source_name, summary[if-any])
 
-	title = entry['title']
 	document['title'] = title
 	original_link = entry['link']
 	document['url'] = original_link
