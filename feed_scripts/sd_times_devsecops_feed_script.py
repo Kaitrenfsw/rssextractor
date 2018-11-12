@@ -25,16 +25,16 @@ channel = connection.channel()
 channel.queue_declare(queue='preprocessing_queue')
 
 # base url and data from this source
-source_name = "InfoQ"
-source_id = 1
-rss_url= "https://feed.infoq.com/"
-date_format = '%a, %d %b %Y %X %Z'
+source_name = "SD Times"
+source_id = 2
+rss_url= "https://sdtimes.com/tag/devsecops/feed/"
+date_format = '%a, %d %b %Y %X %z'
 first_exec = False
 
 # check if file exist and set 'first_exec' var
 
 dir_path = "feed_logs/"
-file_name = "infoq_feed_log.txt"
+file_name = "sd_times_ai_feed_log.txt"
 
 if os.path.exists(dir_path+file_name):
 	file_mode = 'r'
@@ -108,7 +108,6 @@ for entry in entries:
 	document['source_name'] = source_name
 	datetime_obj = datetime.strptime(entry['published'], date_format)
 	document['published'] = datetime_obj.strftime('%d/%m/%Y')
-	document['main_image'] = summary_soup.img['src']
 	document['summary'] = summary_soup.p.text
 
 	#pprint(document)
@@ -123,11 +122,12 @@ for entry in entries:
 	# retrieve & save text from publication (p, ul, and blockquote)
 	# InfoQ has 2 kinds of content: publication/articles and presentations
 
-	publication_body = original_link_soup.find("div", {"class": "text_info"})
+	publication_body = original_link_soup.find("div", {"class": "postContent"})
 	presentation_body = original_link_soup.find("p", {"id": "summary"})
 	raw_text = title
 
 	if publication_body:
+		document['main_image'] = publication_body.find("img", {"class": "wp-post-image"})['src']
 		for p in publication_body.findAll("p", recursive=False):
 			raw_text = " ".join([raw_text, p.text])
 		for ul in publication_body.findAll("ul", recursive=False):
@@ -135,8 +135,8 @@ for entry in entries:
 		for bq in publication_body.findAll("blockquote", recursive=False):
 			raw_text = " ".join([raw_text, bq.text])
 
-	if presentation_body:
-		raw_text = " ".join([raw_text, presentation_body.text]) 
+	#if presentation_body:
+		#raw_text = " ".join([raw_text, presentation_body.text]) 
 
 	document['raw_text'] = raw_text
 	message = {}
@@ -161,10 +161,12 @@ for entry in entries:
 	# DELETE FROM FINAL VERSION
 	# save message in JSON file
 
-	with open("dataset/"+str(new_id)+"asd123.json", 'w+') as new_json_file:
+	with open("dataset/"+str(new_id)+"sdtimes.json", 'w+') as new_json_file:
 		json.dump(message, new_json_file)
 
 	# send id to RabbitMQ
+
+	print("New document added:  "+title)
 
 	channel.basic_publish(exchange='', routing_key='preprocessing_queue', body=new_id)
 

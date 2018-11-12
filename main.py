@@ -13,14 +13,34 @@ while True:
 
 	try:
 		print("Running InfoQ feed script...")
-		os.system("python3 infoq_feed_script.py")
-		time.sleep(300)
+		os.system("python3 feed_scripts/infoq_feed_script.py")
+		print(".....\n")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...")
+		time.sleep(10)
 
 	except:
 		print("There was a problem running InfoQ script. Skipping...")
 
 
-	# run X script
+	# run SD Times scripts
+
+	try:
+		print("Running SD Times AI feed script...")
+		os.system("python3 feed_scripts/sd_times_ai_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running InfoQ script. Skipping...")
+
 
 	# wait and repeat
 
