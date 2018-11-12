@@ -146,6 +146,7 @@ for entry in entries:
 
 	json_message = json.dumps(message)
 
+
 	# send POST request with json_document to RAW_DATA
 
 	http = urllib3.PoolManager()
@@ -156,6 +157,12 @@ for entry in entries:
 	json_response = json.loads(r.data)
 	new_doc = json_response['document']
 	new_id = new_doc['id']
+
+	# DELETE FROM FINAL VERSION
+	# save message in JSON file
+
+	with open("dataset/"+str(new_id)+"asd123.json", 'w+') as new_json_file:
+		json.dump(message, new_json_file)
 
 	# send id to RabbitMQ
 
