@@ -1,1 +1,1 @@
-The Future of Java is Today: CodeOne (née JavaOne) Keynote Highlights
+Justin Cormack Explores the Changes, Limitations, and Opportunities within Modern OSs at QCon SF
