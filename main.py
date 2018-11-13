@@ -39,8 +39,111 @@ while True:
 		time.sleep(10)
 
 	except:
-		print("There was a problem running InfoQ script. Skipping...")
+		print("There was a problem running the script. Skipping...")
 
+	try:
+		print("Running SD Times Agile feed script...")
+		os.system("python3 feed_scripts/sd_times_agile_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running the script. Skipping...")		
+
+	try:
+		print("Running SD Times AMP feed script...")
+		os.system("python3 feed_scripts/sd_times_amp_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running the script. Skipping...")	
+
+	try:
+		print("Running SD Times API feed script...")
+		os.system("python3 feed_scripts/sd_times_api_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running the script. Skipping...")	
+
+	try:
+		print("Running SD Times CI/CD feed script...")
+		os.system("python3 feed_scripts/sd_times_cicd_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running the script. Skipping...")	
+
+	try:
+		print("Running SD Times Containers feed script...")
+		os.system("python3 feed_scripts/sd_times_containers_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running the script. Skipping...")	
+
+	try:
+		print("Running SD Times Data feed script...")
+		os.system("python3 feed_scripts/sd_times_data_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running the script. Skipping...")	
+
+	try:
+		print("Running SD Times DevOps feed script...")
+		os.system("python3 feed_scripts/sd_times_devops_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running the script. Skipping...")	
+
+	try:
+		print("Running SD Times DevSecOps feed script...")
+		os.system("python3 feed_scripts/sd_times_devsecops_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running the script. Skipping...")	
 
 	# wait and repeat
 

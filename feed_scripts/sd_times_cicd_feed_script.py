@@ -34,7 +34,7 @@ first_exec = False
 # check if file exist and set 'first_exec' var
 
 dir_path = "feed_logs/"
-file_name = "sd_times_api_feed_log.txt"
+file_name = "sd_times_cicd_feed_log.txt"
 
 if os.path.exists(dir_path+file_name):
 	file_mode = 'r'
@@ -127,7 +127,11 @@ for entry in entries:
 	raw_text = title
 
 	if publication_body:
-		document['main_image'] = publication_body.find("img", {"class": "wp-post-image"})['src']
+		main_image_soup = publication_body.find("img")
+		if main_image_soup:
+			document['main_image'] = main_image_soup['src']
+		else:
+			document['main_image'] = ''
 		for p in publication_body.findAll("p", recursive=False):
 			raw_text = " ".join([raw_text, p.text])
 		for ul in publication_body.findAll("ul", recursive=False):

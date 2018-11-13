@@ -127,7 +127,11 @@ for entry in entries:
 	raw_text = title
 
 	if publication_body:
-		document['main_image'] = publication_body.find("img", {"class": "wp-post-image"})['src']
+		main_image_soup = publication_body.find("img")
+		if main_image_soup:
+			document['main_image'] = main_image_soup['src']
+		else:
+			document['main_image'] = ''
 		for p in publication_body.findAll("p", recursive=False):
 			raw_text = " ".join([raw_text, p.text])
 		for ul in publication_body.findAll("ul", recursive=False):
