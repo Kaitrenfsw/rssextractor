@@ -4,7 +4,7 @@ import time
 # create infinite loop to run all scripts
 # leave a 5 minute window between scripts
 # repeat execution after 6 hours
-testing = True
+testing = False
 
 if testing:
 
