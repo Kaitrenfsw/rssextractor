@@ -171,7 +171,7 @@ for entry in entries:
 	# DELETE FROM FINAL VERSION
 	# save message in JSON file
 
-	with open("dataset/"+str(new_id)+"sdtimes.json", 'w+') as new_json_file:
+	with open("dataset/"+str(new_id)+"thehackernews.json", 'w+') as new_json_file:
 		json.dump(message, new_json_file)
 
 	# send id to RabbitMQ
