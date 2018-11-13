@@ -136,21 +136,27 @@ for entry in entries:
 			document['main_image'] = main_image_soup['src']
 		else:
 			document['main_image'] = ''
+
+		# if there is not an extra div nested
+
 		for text_piece in publication_body.findAll(text=True, recursive=False):
 			raw_text = " ".join([raw_text, text_piece])
 		for a in publication_body.findAll("a", recursive=False):
 			raw_text = " ".join([raw_text, a.text])
 		for ul in publication_body.findAll("ul", recursive=False):
 			raw_text = " ".join([raw_text, ul.text])
-		for bq in publication_body.findAll("blockquote"):
+		for bq in publication_body.findAll("blockquote", recursive=False):
 			raw_text = " ".join([raw_text, bq.text])		
+
+		# if there is an extra div nested
+
 		for text_piece in content_soup.findAll(text=True, recursive=False):
 			raw_text = " ".join([raw_text, text_piece])
 		for a in content_soup.findAll("a", recursive=False):
 			raw_text = " ".join([raw_text, a.text])
 		for ul in content_soup.findAll("ul", recursive=False):
 			raw_text = " ".join([raw_text, ul.text])
-		for bq in content_soup.findAll("blockquote"):
+		for bq in content_soup.findAll("blockquote", recursive=False):
 			raw_text = " ".join([raw_text, bq.text])
 
 	#if presentation_body:
