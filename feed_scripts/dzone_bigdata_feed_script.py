@@ -150,11 +150,11 @@ for entry in entries:
 	message = {}
 	message['document'] = document
 
-	pprint(document)
+	#pprint(document)
 
 	# document dict to JSON
 
-"""	json_message = json.dumps(message)
+	json_message = json.dumps(message)
 
 
 	# send POST request with json_document to RAW_DATA
@@ -179,7 +179,7 @@ for entry in entries:
 	print("New document added:  "+title)
 
 	channel.basic_publish(exchange='', routing_key='preprocessing_queue', body=new_id)
-"""
+
 # close connection with RabbitMQ
 
 connection.close()
