@@ -146,18 +146,15 @@ for entry in entries:
 		for ul in publication_body.findAll("ul"):
 			raw_text = " ".join([raw_text, ul.text])
 
-	#if presentation_body:
-		#raw_text = " ".join([raw_text, presentation_body.text]) 
-
 	document['raw_text'] = raw_text
 	message = {}
 	message['document'] = document
 
-	pprint(document)
+	#pprint(document)
 
 	# document dict to JSON
 
-"""	json_message = json.dumps(message)
+	json_message = json.dumps(message)
 
 
 	# send POST request with json_document to RAW_DATA
@@ -182,7 +179,7 @@ for entry in entries:
 	print("New document added:  "+title)
 
 	channel.basic_publish(exchange='', routing_key='preprocessing_queue', body=new_id)
-"""
+
 # close connection with RabbitMQ
 
 connection.close()
