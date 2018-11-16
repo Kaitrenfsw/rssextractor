@@ -194,6 +194,19 @@ while not testing:
 	except:
 		print("There was a problem running the script. Skipping...")
 
+	try:
+		print("Running DZone Agile feed script...")
+		os.system("python3 feed_scripts/dzone_agile_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...\n\n")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running the script. Skipping...")	
+
 	# wait and repeat
 
 	print("Next iteration will start in 6 hours...")
