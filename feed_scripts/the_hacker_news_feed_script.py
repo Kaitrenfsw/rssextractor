@@ -27,7 +27,7 @@ channel.queue_declare(queue='preprocessing_queue')
 
 # base url and data from this source
 source_name = "The Hacker News"
-source_id = 3
+source_id = 18
 rss_url= "https://feeds.feedburner.com/TheHackersNews?format=xml"
 date_format = '%a, %d %b %Y %X'
 default_image = "https://1.bp.blogspot.com/-AaptImXE5Y4/WzjvqBS8HtI/AAAAAAAAxSs/BcCIwpWJszILkuEbDfKZhxQJwOAD7qV6ACLcBGAs/s728-e100/the-hacker-news.jpg"

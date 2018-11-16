@@ -26,7 +26,7 @@ channel.queue_declare(queue='preprocessing_queue')
 
 # base url and data from this source
 source_name = "SD Times"
-source_id = 2
+source_id = 23
 rss_url= "https://sdtimes.com/tag/ai/feed/"
 date_format = '%a, %d %b %Y %X %z'
 first_exec = False

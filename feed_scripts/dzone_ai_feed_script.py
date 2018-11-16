@@ -27,7 +27,7 @@ channel.queue_declare(queue='preprocessing_queue')
 
 # base url and data from this source
 source_name = "DZone"
-source_id = 4
+source_id = 24
 rss_url= "http://feeds.dzone.com/ai"
 date_format = '%a, %d %b %Y %X'
 default_image = "https://dzone.com/themes/dz20/images/DZLogo.png"
