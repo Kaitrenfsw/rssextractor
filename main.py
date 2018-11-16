@@ -17,7 +17,7 @@ if testing:
 		time.sleep(10)
 		print("Next script will start in: 20 seconds...")
 		time.sleep(10)
-		print("Next script will start in: 10 seconds...")
+		print("Next script will start in: 10 seconds...\n\n")
 		time.sleep(10)
 
 	except:
@@ -37,7 +37,7 @@ while not testing:
 		time.sleep(10)
 		print("Next script will start in: 20 seconds...")
 		time.sleep(10)
-		print("Next script will start in: 10 seconds...")
+		print("Next script will start in: 10 seconds...\n\n")
 		time.sleep(10)
 
 	except:
@@ -53,7 +53,7 @@ while not testing:
 		time.sleep(10)
 		print("Next script will start in: 20 seconds...")
 		time.sleep(10)
-		print("Next script will start in: 10 seconds...")
+		print("Next script will start in: 10 seconds...\n\n")
 		time.sleep(10)
 
 	except:
@@ -66,7 +66,7 @@ while not testing:
 		time.sleep(10)
 		print("Next script will start in: 20 seconds...")
 		time.sleep(10)
-		print("Next script will start in: 10 seconds...")
+		print("Next script will start in: 10 seconds...\n\n")
 		time.sleep(10)
 
 	except:
@@ -79,7 +79,7 @@ while not testing:
 		time.sleep(10)
 		print("Next script will start in: 20 seconds...")
 		time.sleep(10)
-		print("Next script will start in: 10 seconds...")
+		print("Next script will start in: 10 seconds...\n\n")
 		time.sleep(10)
 
 	except:
@@ -92,7 +92,7 @@ while not testing:
 		time.sleep(10)
 		print("Next script will start in: 20 seconds...")
 		time.sleep(10)
-		print("Next script will start in: 10 seconds...")
+		print("Next script will start in: 10 seconds...\n\n")
 		time.sleep(10)
 
 	except:
@@ -105,7 +105,7 @@ while not testing:
 		time.sleep(10)
 		print("Next script will start in: 20 seconds...")
 		time.sleep(10)
-		print("Next script will start in: 10 seconds...")
+		print("Next script will start in: 10 seconds...\n\n")
 		time.sleep(10)
 
 	except:
@@ -118,7 +118,7 @@ while not testing:
 		time.sleep(10)
 		print("Next script will start in: 20 seconds...")
 		time.sleep(10)
-		print("Next script will start in: 10 seconds...")
+		print("Next script will start in: 10 seconds...\n\n")
 		time.sleep(10)
 
 	except:
@@ -131,7 +131,7 @@ while not testing:
 		time.sleep(10)
 		print("Next script will start in: 20 seconds...")
 		time.sleep(10)
-		print("Next script will start in: 10 seconds...")
+		print("Next script will start in: 10 seconds...\n\n")
 		time.sleep(10)
 
 	except:
@@ -144,7 +144,7 @@ while not testing:
 		time.sleep(10)
 		print("Next script will start in: 20 seconds...")
 		time.sleep(10)
-		print("Next script will start in: 10 seconds...")
+		print("Next script will start in: 10 seconds...\n\n")
 		time.sleep(10)
 
 	except:
@@ -157,7 +157,7 @@ while not testing:
 		time.sleep(10)
 		print("Next script will start in: 20 seconds...")
 		time.sleep(10)
-		print("Next script will start in: 10 seconds...")
+		print("Next script will start in: 10 seconds...\n\n")
 		time.sleep(10)
 
 	except:
@@ -173,7 +173,7 @@ while not testing:
 		time.sleep(10)
 		print("Next script will start in: 20 seconds...")
 		time.sleep(10)
-		print("Next script will start in: 10 seconds...")
+		print("Next script will start in: 10 seconds...\n\n")
 		time.sleep(10)
 
 	except:
@@ -188,7 +188,7 @@ while not testing:
 		time.sleep(10)
 		print("Next script will start in: 20 seconds...")
 		time.sleep(10)
-		print("Next script will start in: 10 seconds...")
+		print("Next script will start in: 10 seconds...\n\n")
 		time.sleep(10)
 
 	except:
