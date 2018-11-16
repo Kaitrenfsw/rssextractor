@@ -4,8 +4,26 @@ import time
 # create infinite loop to run all scripts
 # leave a 5 minute window between scripts
 # repeat execution after 6 hours
+testing = False
 
-while True:
+if testing:
+
+	# testing The Hacker News script
+
+	try:
+		print("Running The Hacerk News feed script...")
+		os.system("python3 feed_scripts/the_hacker_news_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running the script. Skipping...")	
+
+while not testing:
 
 	print("Starting extraction...")
 
@@ -144,6 +162,22 @@ while True:
 
 	except:
 		print("There was a problem running the script. Skipping...")	
+
+
+	# run The Hacker News script
+
+	try:
+		print("Running The Hacerk News feed script...")
+		os.system("python3 feed_scripts/the_hacker_news_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running the script. Skipping...")
 
 	# wait and repeat
 
