@@ -11,8 +11,8 @@ if testing:
 	# testing new script
 
 	try:
-		print("Running DZone DevOps feed script...")
-		os.system("python3 feed_scripts/dzone_devops_feed_script.py")
+		print("Running DZone Integration feed script...")
+		os.system("python3 feed_scripts/dzone_integration_feed_script.py")
 		print("Next script will start in: 30 seconds...")
 		time.sleep(10)
 		print("Next script will start in: 20 seconds...")
@@ -258,6 +258,19 @@ while not testing:
 
 	except:
 		print("There was a problem running the script. Skipping...")	
+
+	try:
+		print("Running DZone Integration feed script...")
+		os.system("python3 feed_scripts/dzone_integration_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...\n\n")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running the script. Skipping...")
 
 	# wait and repeat
 
