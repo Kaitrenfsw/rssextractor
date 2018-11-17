@@ -11,8 +11,8 @@ if testing:
 	# testing new script
 
 	try:
-		print("Running DZone Big Data feed script...")
-		os.system("python3 feed_scripts/dzone_bigdata_feed_script.py")
+		print("Running DZone Cloud feed script...")
+		os.system("python3 feed_scripts/dzone_cloud_feed_script.py")
 		print("Next script will start in: 30 seconds...")
 		time.sleep(10)
 		print("Next script will start in: 20 seconds...")
