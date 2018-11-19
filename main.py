@@ -4,15 +4,15 @@ import time
 # create infinite loop to run all scripts
 # leave a 5 minute window between scripts
 # repeat execution after 6 hours
-testing = True
+testing = False
 
 if testing:
 
 	# testing new script
 
 	try:
-		print("Running DZone Java feed script...")
-		os.system("python3 feed_scripts/dzone_java_feed_script.py")
+		print("Running DZone Web Dev feed script...")
+		os.system("python3 feed_scripts/dzone_webdev_feed_script.py")
 		print("Next script will start in: 30 seconds...")
 		time.sleep(10)
 		print("Next script will start in: 20 seconds...")
@@ -297,6 +297,71 @@ while not testing:
 
 	except:
 		print("There was a problem running the script. Skipping...")	
+
+	try:
+		print("Running DZone Microservices feed script...")
+		os.system("python3 feed_scripts/dzone_microservices_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...\n\n")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running the script. Skipping...")
+
+	try:
+		print("Running DZone Mobile feed script...")
+		os.system("python3 feed_scripts/dzone_mobile_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...\n\n")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running the script. Skipping...")	
+
+	try:
+		print("Running DZone Performance feed script...")
+		os.system("python3 feed_scripts/dzone_performance_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...\n\n")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running the script. Skipping...")	
+
+	try:
+		print("Running DZone Security feed script...")
+		os.system("python3 feed_scripts/dzone_security_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...\n\n")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running the script. Skipping...")	
+
+	try:
+		print("Running DZone Web Dev feed script...")
+		os.system("python3 feed_scripts/dzone_webdev_feed_script.py")
+		print("Next script will start in: 30 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 20 seconds...")
+		time.sleep(10)
+		print("Next script will start in: 10 seconds...\n\n")
+		time.sleep(10)
+
+	except:
+		print("There was a problem running the script. Skipping...")
 
 	# wait and repeat
 
