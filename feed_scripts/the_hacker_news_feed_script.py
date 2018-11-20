@@ -27,9 +27,10 @@ channel.queue_declare(queue='preprocessing_queue')
 
 # base url and data from this source
 source_name = "The Hacker News"
-source_id = 3
+source_id = 18
 rss_url= "https://feeds.feedburner.com/TheHackersNews?format=xml"
 date_format = '%a, %d %b %Y %X'
+default_image = "https://1.bp.blogspot.com/-AaptImXE5Y4/WzjvqBS8HtI/AAAAAAAAxSs/BcCIwpWJszILkuEbDfKZhxQJwOAD7qV6ACLcBGAs/s728-e100/the-hacker-news.jpg"
 first_exec = False
 
 # check if file exist and set 'first_exec' var
@@ -135,7 +136,7 @@ for entry in entries:
 		if main_image_soup:
 			document['main_image'] = main_image_soup['src']
 		else:
-			document['main_image'] = ''
+			document['main_image'] = default_image
 
 		# if there is not an extra div nested
 

@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from pprint import pprint
 from datetime import datetime
 from urllib.request import urlopen as uReq
+from urllib import request as urllibrequest
 import request
 import feedparser
 import json
@@ -25,16 +26,17 @@ channel = connection.channel()
 channel.queue_declare(queue='preprocessing_queue')
 
 # base url and data from this source
-source_name = "SD Times"
-source_id = 23
-rss_url= "https://sdtimes.com/tag/containers/feed/"
-date_format = '%a, %d %b %Y %X %z'
+source_name = "DZone"
+source_id = 24
+rss_url= "http://feeds.dzone.com/devops"
+date_format = '%a, %d %b %Y %X'
+default_image = "https://dzone.com/themes/dz20/images/DZLogo.png"
 first_exec = False
 
 # check if file exist and set 'first_exec' var
 
 dir_path = "feed_logs/"
-file_name = "sd_times_containers_feed_log.txt"
+file_name = "dzone_devops_feed_log.txt"
 
 if os.path.exists(dir_path+file_name):
 	file_mode = 'r'
@@ -106,15 +108,16 @@ for entry in entries:
 	document['url'] = original_link
 	document['source_id'] = source_id
 	document['source_name'] = source_name
-	datetime_obj = datetime.strptime(entry['published'], date_format)
+	datetime_obj = datetime.strptime(entry['published'][:-4], date_format)
 	document['published'] = datetime_obj.strftime('%d/%m/%Y')
 	document['summary'] = summary_soup.p.text
 
 	#pprint(document)
 
-	# scrap original link
+	# scrap original link, added browser agent to pass
 
-	uClient = uReq(original_link)
+	browser_request = urllibrequest.Request(original_link, headers = {'User-Agent': 'Mozilla/5.0'})
+	uClient = uReq(browser_request)
 	original_link_content = uClient.read()
 	uClient.close()
 	original_link_soup = BeautifulSoup(original_link_content, 'html.parser')
@@ -122,29 +125,32 @@ for entry in entries:
 	# retrieve & save text from publication (p, ul, and blockquote)
 	# InfoQ has 2 kinds of content: publication/articles and presentations
 
-	publication_body = original_link_soup.find("div", {"class": "postContent"})
-	presentation_body = original_link_soup.find("p", {"id": "summary"})
+	publication_body = original_link_soup.find("div", {"class": "content-html"})
 	raw_text = title
 
 	if publication_body:
 		main_image_soup = publication_body.find("img")
-		if main_image_soup:
-			document['main_image'] = main_image_soup['src']
-		else:
-			document['main_image'] = ''
-		for p in publication_body.findAll("p", recursive=False):
-			raw_text = " ".join([raw_text, p.text])
-		for ul in publication_body.findAll("ul", recursive=False):
-			raw_text = " ".join([raw_text, ul.text])
-		for bq in publication_body.findAll("blockquote", recursive=False):
-			raw_text = " ".join([raw_text, bq.text])
 
-	#if presentation_body:
-		#raw_text = " ".join([raw_text, presentation_body.text]) 
+		if main_image_soup:
+			if main_image_soup['src'].startswith("http") or main_image_soup['src'].startswith("www."):
+				document['main_image'] = main_image_soup['src']
+			else:
+				document['main_image'] = "https://dzone.com"+main_image_soup['src']
+		else:
+			document['main_image'] = default_image
+
+		for p in publication_body.findAll("p"):
+			raw_text = " ".join([raw_text, p.text])
+		for h in publication_body.findAll("h2"):
+			raw_text = " ".join([raw_text, h.text])
+		for ul in publication_body.findAll("ul"):
+			raw_text = " ".join([raw_text, ul.text])
 
 	document['raw_text'] = raw_text
 	message = {}
 	message['document'] = document
+
+	#pprint(document)
 
 	# document dict to JSON
 
@@ -165,7 +171,7 @@ for entry in entries:
 	# DELETE FROM FINAL VERSION
 	# save message in JSON file
 
-	with open("dataset/"+str(new_id)+"sdtimes.json", 'w+') as new_json_file:
+	with open("dataset/"+str(new_id)+"dzone1.json", 'w+') as new_json_file:
 		json.dump(message, new_json_file)
 
 	# send id to RabbitMQ
